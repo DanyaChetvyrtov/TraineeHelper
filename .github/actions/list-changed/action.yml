@@ -1,0 +1,31 @@
+name: List changed files
+description: |
+  List all changed files.
+  Example: 
+    uses: ./.github/actions/list-changed-files
+    with:
+      files: "file1.txt file2.txt"
+
+inputs:
+  files:
+    description: Receive list of changed files for their display
+    required: false
+    default: ""
+
+runs:
+ using: composite
+ steps:
+   - name: List all changed files
+     shell: bash
+     env:
+       ALL_CHANGED_FILES: ${{ inputs.files }}
+     run: |
+       if [ -z "${ALL_CHANGED_FILES}" ]; then
+         echo "No files were changed in any microservice"
+         exit 0
+       fi
+      
+       echo "Changed files in microservices detected"
+       for file in ${ALL_CHANGED_FILES}; do
+         echo "$file was changed"
+       done
