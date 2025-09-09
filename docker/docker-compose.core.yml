@@ -1,0 +1,20 @@
+services:
+  config-server:
+    image: danilchet/config-server
+    container_name: config-server-ci-trainee-container
+    environment:
+      - "spring.cloud.config.server.vault.host=vault"
+    networks:
+      - ci-trainee-helper
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+networks:
+  ci-trainee-helper:
+    external: true

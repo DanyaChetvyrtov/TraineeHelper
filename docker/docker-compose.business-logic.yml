@@ -1,0 +1,17 @@
+services:
+  auth-ms:
+    image: danilchet/auth-ms
+    container_name: auth-ms-ci-trainee-container
+    networks:
+      - ci-trainee-helper
+    ports:
+      - "4000:4000"
+    environment:
+      - MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE=*
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:5000
+      - SPRING_CONFIG_IMPORT=configserver:http://config-server:5000
+
+networks:
+  ci-trainee-helper:
+    external: true
