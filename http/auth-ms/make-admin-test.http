@@ -1,0 +1,12 @@
+@path=http://localhost:4000/api/v1/user
+
+# ID пользователя, которого хотим сделать ADMIN'ом
+@userId=44046347-9343-499a-8d36-c47694defd2e
+
+# Токен должен принадлежать пользователю с ролью ADMIN.
+# Получить логин можно войдя в систему в auth-test.http
+
+### PUT make user ADMIN
+PUT {{path}}/{{userId}}
+Authorization: Bearer {{accessToken}}
+

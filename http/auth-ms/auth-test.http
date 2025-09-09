@@ -1,0 +1,32 @@
+@path=http://localhost:4000/api/v1/auth
+@userId=44046347-9343-499a-8d36-c47694defd2e
+
+### POST register
+POST {{path}}/register
+Content-Type: application/json
+
+{
+    "username": "Danil",
+    "password": "root",
+    "passwordConfirmation": "root"
+}
+
+### POST login
+POST {{path}}/login
+Content-Type: application/json
+
+{
+    "username": "Danil",
+    "password": "root"
+}
+
+> {%
+    client.global.set("accessToken", response.body.accessToken)
+    client.global.set("refreshToken", response.body.refreshToken)
+%}
+
+### POST refresh
+POST {{path}}/refresh
+
+{{refreshToken}}
+
