@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.yml
+
+server:
+  port: 4000
+
+security:
+  jwt:
+    secret: ${SECRET_KEY}
+    accessDuration: ${ACCESS_DURATION}
+    refreshDuration: ${REFRESH_DURATION}

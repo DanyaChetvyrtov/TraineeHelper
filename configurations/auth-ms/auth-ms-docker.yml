@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/auth_user_db?currentSchema=auth_user_docker
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: auth_user_docker
