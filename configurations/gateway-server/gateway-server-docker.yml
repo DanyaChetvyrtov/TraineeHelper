@@ -12,16 +12,9 @@ spring:
               filters:
                 - RewritePath=/auth/api/v1/(?<path>.*), /api/v1/$\{path}
 
-            - id: auth-swagger-ui
-              uri: http://auth-ms:4000
+            - id: profile-service-api
+              uri: http://profile-ms:4001
               predicates:
-                - Path=/auth/swagger/**
+                - Path=/profile/api/v1/**
               filters:
-                - RewritePath=/auth/swagger/(?<path>.*), /swagger-ui/$\{path}
-
-            - id: auth-api-docs
-              uri: http://auth-ms:4000
-              predicates:
-                - Path=/auth/v3/**
-              filters:
-                - RewritePath=/auth/v3/(?<path>.*), /auth/v3/$\{path}
+                - RewritePath=/profile/api/v1/(?<path>.*), /api/v1/$\{path}
