@@ -17,3 +17,4 @@ spring:
                 - Path=/profile/api/v1/**
               filters:
                 - RewritePath=/profile/api/v1/(?<path>.*), /api/v1/$\{path}
+                - JwtValidation
