@@ -1,0 +1,2 @@
+CREATE SCHEMA IF NOT EXISTS profile_dev;
+CREATE SCHEMA IF NOT EXISTS profile_docker;
