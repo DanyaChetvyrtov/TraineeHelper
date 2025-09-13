@@ -1,2 +1,6 @@
 server:
   port: 5001
+
+security:
+  jwt:
+    secret: "${SECRET_KEY}"
