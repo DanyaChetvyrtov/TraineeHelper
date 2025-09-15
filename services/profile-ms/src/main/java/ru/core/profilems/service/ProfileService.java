@@ -1,11 +1,11 @@
 package ru.core.profilems.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.core.profilems.dto.CurrentUser;
 import ru.core.profilems.dto.request.SearchParameters;
 import ru.core.profilems.exception.exception.PageNotFound;
 import ru.core.profilems.exception.exception.ProfileNotFoundException;
@@ -20,6 +20,7 @@ import java.util.function.BiFunction;
 @Transactional(readOnly = true)
 public class ProfileService {
     private final ProfileRepository profileRepository;
+    private final CurrentUser currentUser;
 
     public Page<Profile> getAllProfiles(Integer page, Integer size) {
         var pageEntity = profileRepository.findAll(PageRequest.of(page - 1, size));
@@ -46,6 +47,7 @@ public class ProfileService {
 
     @Transactional
     public Profile create(Profile profile) {
+        profile.setProfileId(UUID.fromString(currentUser.getUserId()));
         if(profileRepository.existsById(profile.getProfileId()))
             throw new IllegalArgumentException("Profile with ID " + profile.getProfileId() + " already exists");
 
