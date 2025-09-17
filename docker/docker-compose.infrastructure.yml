@@ -28,11 +28,29 @@ services:
     networks:
       - ci-trainee-helper
     volumes:
-      - vault-ci-trainee-volume:/vault/data
+      - ../scripts/vault-initializer.sh:/usr/local/bin/vault-initializer.sh
+      - ../scripts/custom-vault-entrypoint.sh:/custom-vault-entrypoint.sh
+    entrypoint: /custom-vault-entrypoint.sh
+
+  minio:
+    image: minio/minio
+    container_name: minio-ci-trainee-container
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=root1234
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-ci-trainee-volume:/data
+    networks:
+      - ci-trainee-helper
+
 
 networks:
   ci-trainee-helper:
     external: true
 volumes:
   postgres-ci-trainee-volume:
-  vault-ci-trainee-volume:
+  minio-ci-trainee-volume:
