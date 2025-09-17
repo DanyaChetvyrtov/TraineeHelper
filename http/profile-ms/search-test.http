@@ -1,0 +1,15 @@
+@path = http://localhost:8100/api/v1/profile
+
+# Нужно будет залогинить пользователя с ролью ADMIN и использовать его токен
+
+### GET search by name or surname
+GET {{path}}/search?query=Da
+Authorization: Bearer {{accessToken}}
+
+### GET search by name or surname. Ignore case
+GET {{path}}/search?query=DA&ignoreCase=true
+Authorization: Bearer {{accessToken}}
+
+### GET search by name or surname. Ignore case + pagination
+GET {{path}}/search?query=DA&ignoreCase=true&size=5&page=1
+Authorization: Bearer {{accessToken}}

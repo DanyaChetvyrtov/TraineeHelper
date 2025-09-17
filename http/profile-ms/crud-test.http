@@ -1,0 +1,35 @@
+@path = http://localhost:4001/api/v1/profile
+# много тасков
+@profileId =8b62d449-4312-48ed-82ef-f9754ca4858b
+
+
+### GET all profiles
+GET {{path}}
+
+### GET by id
+GET {{path}}/{{profileId}}
+
+### POST create new profile
+POST {{path}}
+Content-Type: application/json
+
+{
+  "profileId": "{{profileId}}",
+  "name": "Danil",
+  "surname": "Semenov",
+  "age": 27
+}
+
+### PUT update profile
+PUT {{path}}/{{profileId}}
+Content-Type: application/json
+
+{
+  "profileId": "{{profileId}}",
+  "name": "Иван UPDATED BY ADMIN",
+  "surname": "Semenov UPDATED BY ADMIN",
+  "age": 24
+}
+
+### DELETE by id
+DELETE {{path}}/{{profileId}}

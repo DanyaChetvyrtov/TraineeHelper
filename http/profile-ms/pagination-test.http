@@ -1,0 +1,13 @@
+@path = http://localhost:8100/api/v1/profile
+
+### GET all accounts without params
+GET {{path}}
+
+### GET other page
+GET {{path}}?page=2
+
+### GET other size
+GET {{path}}?size=2
+
+### GET other page & size
+GET {{path}}?size=2&page=1

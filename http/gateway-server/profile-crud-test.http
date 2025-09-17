@@ -1,0 +1,52 @@
+@path = http://localhost:5001/profile/api/v1/profile
+
+# user1
+#@profileId =8b62d449-4312-48ed-82ef-f9754ca4858b
+#admin1
+#@profileId=5bc388a6-f95d-459d-b5b5-51b63e01c533
+#Chiba
+@profileId=f99bd4cb-600e-4c07-992c-7c3de2329549
+
+
+### GET all profiles
+GET {{path}}
+Authorization: Bearer {{accessToken}}
+
+### GET all profiles with page params
+GET {{path}}?size=3&page=1
+Authorization: Bearer {{accessToken}}
+
+### GET all profiles with page params
+GET {{path}}/search?query=иван&ignoreCase=true
+Authorization: Bearer {{accessToken}}
+
+### GET by id
+GET {{path}}/{{profileId}}
+Authorization: Bearer {{accessToken}}
+
+### POST create new profile
+POST {{path}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "name": "Artyom",
+  "surname": "Chiba",
+  "age": 25
+}
+
+### PUT update profile
+PUT {{path}}/{{profileId}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "profileId": "{{profileId}}",
+  "name": "Artyom",
+  "surname": "Timur",
+  "age": 22
+}
+
+### DELETE by id
+DELETE {{path}}/{{profileId}}
+Authorization: Bearer {{accessToken}}
